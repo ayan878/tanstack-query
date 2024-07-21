@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import Issues from "../pages/Issues";
 import { IssueItem } from "./IssueItem";
+import LabelList from "./LabelList";
 
 export default function IssuesList() {
   const issueQuery = useQuery(["issues"], () =>

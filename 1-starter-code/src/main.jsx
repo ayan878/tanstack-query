@@ -1,14 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import ReactDOM from "react-dom";
 import "./index.css";
-import { QueryClient, QueryClientProvider } from "react-query";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { worker } from "@uidotdev/react-query-api";
 
-const queryClient =new  QueryClient();
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </React.StrictMode>
-);
+new Promise((res) => setTimeout(res, 100))
+  .then(() =>
+    worker.start({
+      quiet: true,
+      onUnhandledRequest: "bypass",
+    })
+  )
+  .then(() => {
+    ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <div className="container">
+            <App />
+          </div>
+        </BrowserRouter>
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  });

@@ -3,12 +3,12 @@ import Issues from "../pages/Issues";
 import { IssueItem } from "./IssueItem";
 import LabelList from "./LabelList";
 
-export default function IssuesList({ labels }) {
-  const issueQuery = useQuery(["issues", { labels }], () => {
-    // turn it query string that we attach to url `labels[]`. [] this indicate thatt we have multiple items that are listed on label
+export default function IssuesList({ labels, status }) {
+  const issueQuery = useQuery(["issues", { labels, status }], () => {
+    // turn it query string that we attach to url `labels[]`. [] this indicate that we have multiple items that are listed on label
     const labelsString = labels.map((label) => `labels[]=${label}`).join("&");
-  
-    return fetch(`/api/issues/?${labelsString}`).then((res) => res.json());
+    const statusString = status ? `&status=${status}` : "";
+    return fetch(`/api/issues/?${labelsString}${statusString}`).then((res) => res.json());
   });
 
   if (issueQuery.isLoading) return <p>Loading...</p>;

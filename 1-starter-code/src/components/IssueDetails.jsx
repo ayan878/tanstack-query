@@ -46,7 +46,6 @@ function useIssueComments(issueNumber) {
   });
 }
 
-
 function Comment({ comment, createdBy, createdDate }) {
   const userQuery = useUserData(createdBy);
 

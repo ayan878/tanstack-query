@@ -1,31 +1,3 @@
-
-// import { useQuery } from "react-query";
-// import { useParams } from "react-router-dom";
-// import { IssueHeader } from "./IssueHeader";
-
-// function useIssueData(issueNumber) {
-//   return useQuery(["issue", issueNumber], () => {
-//     return fetch(`/api/issues/${issueNumber}`).then((issue) => issue.json());
-//   });
-// }
-// export default function IssueDetails() {
-//   const { number } = useParams();
-//   const issueQuery = useIssueData(number);
-//   console.log("issue", issueQuery.data);
-
-//   return (
-//     <div className="issue-details">
-//       {issueQuery.isLoading ? (
-//         <p>Loading...</p>
-//       ) : (
-//         <>
-//           <IssueHeader {...issueQuery.data} />
-//         </>
-//       )}
-//     </div>
-//   );
-// }
-
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { relativeDate } from "../helpers/relativeDate";

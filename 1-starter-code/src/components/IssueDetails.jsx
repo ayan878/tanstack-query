@@ -5,9 +5,13 @@ import { useUserData } from "../helpers/useUserData";
 import { IssueHeader } from "./IssueHeader";
 
 function useIssueData(issueNumber) {
-  return useQuery(["issues", issueNumber], () => {
-    return fetch(`/api/issues/${issueNumber}`).then((res) => res.json());
-  });
+  return useQuery(
+    ["issues", issueNumber],
+    () => {
+      return fetch(`/api/issues/${issueNumber}`).then((res) => res.json());
+    },
+    { staleTime: 10000 }
+  );
 }
 
 function useIssueComments(issueNumber) {
